@@ -61,7 +61,7 @@ Implement Home page at available at `/`.
 There should be 3 separate pages `/phones`, `/tablets`, and `/accessories`.
 
 1. Each page loads the data of the required `type`.
-2. Add an `h1` with `Phones/Tablets/Accessories page` (choose required).
+2. Add an `h1` with `Phone/Tablet/Accessorie page` (choose required).
 3. Add `ProductsList` component showing all the `products`.
 4. Implement a `Loader` to show it while waiting for the data from the server.
 5. In case of a loading error show the something went wrong message with a reload button.
@@ -90,7 +90,7 @@ Create `ProductDetailsPage` available at `/product/:productId`.
 6. Add `Back` button working the same way as a Browser `Back` button.
 7. Add `Breadcrumbs` at the top with:
    - A Home page link;
-   - A category page link (`Phones`, `Tablets`, `Accessories`);
+   - A category page link (`Phone`, `Tablet`, `Accessorie`);
    - The name of the product (just a text).
 8. Show `Product was not found` if there is no product with a given id on the server.
 

@@ -1,0 +1,69 @@
+@use '../../shared/utils/mixins' as *;
+
+.appHeader {
+  border-bottom: 1px #3B3E4A solid;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    @include on-tablet {
+      padding: 13px 16px;
+    }
+  }
+  &__icon{
+    width: 16px;
+    height: 16px;
+
+
+  &__iconHeart{
+      display: none;
+  }
+
+ &__textContainer{
+   display: flex;
+   gap: 32px
+ }
+
+  &__headerText{
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #75767F;
+  }
+
+
+    //@include on-desktop {
+    //  grid-column: 1/6;
+    //}
+  }
+
+  &__picture{
+    display: block;
+    line-height: 0;
+  }
+
+  &__HeartLikeButton{
+    display: none;
+    @include on-tablet {
+      display: inline;
+      padding: 16px;
+      background: none;
+      border: none;
+      border-left: 1px solid #3B3E4A;
+    }
+  }
+
+  &__burgerButton {
+    padding: 16px;
+    background: none;
+    border: none;
+    border-left: 1px solid #3B3E4A;
+
+    }
+  }
+

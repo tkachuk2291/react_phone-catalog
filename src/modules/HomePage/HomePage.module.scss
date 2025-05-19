@@ -1,0 +1,40 @@
+.homePage{
+  &__mainText{
+    line-height: 41px;
+    letter-spacing: -0.1px ;
+    font-weight: 800;
+    font-size: 32px;
+    color:#F1F2F9;
+    padding: 16px 24px;
+    max-width: 230px;
+  }
+  &__main{
+    padding:  0 16px ;
+  }
+  &__mainText{
+    font-weight: 800;
+    font-size: 32px;
+    max-width: 288px;
+    line-height: 41px;
+    letter-spacing: -1px;
+    margin: 0 auto;
+  }
+
+  &__category{
+      padding:  56px 16px ;
+      max-width: 288px;
+      margin: 0 auto;
+  }
+
+  &__categoryText{
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 41px;
+    color: #F1F2F9;
+  }
+
+}
+.picture{
+    width: 100%;
+    margin: 0 auto;
+}

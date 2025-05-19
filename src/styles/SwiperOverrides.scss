@@ -1,0 +1,21 @@
+.customSwiperMain {
+  width: 100%;
+  box-sizing: border-box;
+
+    .swiper-pagination {
+      margin-top:10px;
+      position: relative;
+
+      .swiper-pagination-bullet {
+        background-color: white;
+        border-radius: 0;
+        width: 14px;
+        height: 4px;
+
+      &-active {
+        filter: none;
+        background-color: #F1F2F9;
+      }
+    }
+  }
+}
