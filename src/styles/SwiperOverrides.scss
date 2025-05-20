@@ -1,8 +1,9 @@
+@use '../shared/utils/mixins' as *;
+
 .customSwiperMain {
   width: 100%;
   box-sizing: border-box;
-
-    .swiper-pagination {
+  .swiper-pagination {
       margin-top:10px;
       position: relative;
 
@@ -18,4 +19,11 @@
       }
     }
   }
+  @include on-tablet {
+    .customSwiperWrapperMain{
+      height: 189px;
+    }
+  }
+
+
 }

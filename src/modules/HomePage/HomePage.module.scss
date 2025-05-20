@@ -1,23 +1,26 @@
+@use '../../shared/utils/mixins' as *;
+
 .homePage{
   &__mainText{
     line-height: 41px;
-    letter-spacing: -0.1px ;
+    letter-spacing: -0.0.1em ;
     font-weight: 800;
     font-size: 32px;
     color:#F1F2F9;
     padding: 16px 24px;
+    margin: 0 auto;
     max-width: 230px;
+
+    @include on-tablet {
+      font-weight: 800;
+      font-size: 48px;
+      line-height: 56px;
+      padding: 32px 24px;
+      max-width: 592px
+    }
   }
   &__main{
     padding:  0 16px ;
-  }
-  &__mainText{
-    font-weight: 800;
-    font-size: 32px;
-    max-width: 288px;
-    line-height: 41px;
-    letter-spacing: -1px;
-    margin: 0 auto;
   }
 
   &__category{

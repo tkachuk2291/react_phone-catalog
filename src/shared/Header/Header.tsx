@@ -7,33 +7,35 @@ export const Header: React.FC = () => {
   return (
     <header className={styles.appHeader}>
       <div className={styles.appHeader__container}>
-        <div className={styles.appHeader__textContainer}>
+        <div className={styles.appHeader__contentContainer}>
+          <picture className={styles.appHeader__picture}>
+            <source
+              media="(min-width: 1200px)"
+              srcSet="img/Header/Desktop/headerLogoDesktop.svg"
+            />
+            <source
+              media="(min-width: 640px)"
+              srcSet="img/Header/Tablet/headerLogoTablet.svg"
+            />
+            <img
+              className={styles.appHeader__logo}
+              alt="headerLogo"
+              src="img/Header/Mobile/headerLogoMobile.svg"
+            />
+          </picture>
+          <div className={styles.appHeader__textContainer}>
             <p className={styles.appHeader__headerText}>home</p>
             <p className={styles.appHeader__headerText}>phones</p>
             <p className={styles.appHeader__headerText}>tablets</p>
             <p className={styles.appHeader__headerText}>accessories</p>
+          </div>
         </div>
-        <picture className={styles.appHeader__picture}>
-          <source
-            media="(min-width: 1200px)"
-            srcSet="img/Header/Desktop/headerLogoDesktop.svg"
-          />
-          <source
-            media="(min-width: 640px)"
-            srcSet="img/Header/Tablet/headerLogoTablet.svg"
-          />
-          <img
-            className={styles.appHeader__logo}
-            alt="headerLogo"
-            src="img/Header/Mobile/headerLogoMobile.svg"
-          />
-        </picture>
         <div className={styles.appHeader__imgContainer}>
           <button className={styles.appHeader__HeartLikeButton}>
             <picture className={styles.appHeader__picture}>
               <source
                 media="(min-width: 1200px)"
-                srcSet="img/Header/Desktop/HeartLikeDesktop.svg"
+                srcSet="img/Header/Desktop/heartLikeDesktop.svg"
               />
               <source
                 media="(min-width: 640px)"
@@ -53,15 +55,15 @@ export const Header: React.FC = () => {
             <picture className={styles.appHeader__picture}>
               <source
                 media="(min-width: 1200px)"
-                srcSet="img/Header/Desktop/ShoppingBagDesktop.svg"
+                srcSet="img/Header/Desktop/shoppingBagDesktop.svg"
               />
               <source
                 media="(min-width: 640px)"
-                srcSet="img/Header/Tablet/ShoppingBagTablet.svg"
+                srcSet="img/Header/Tablet/shoppingBagTablet.svg"
               />
               <img
                 className={styles.appHeader__iconMobile}
-                src="img/Header/Mobile/BurgerIconMobile.svg"
+                src="img/Header/Mobile/burgerIconMobile.svg"
                 alt="BurgerIconMobile"
               />
             </picture>

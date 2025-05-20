@@ -16,30 +16,13 @@
   &__icon{
     width: 16px;
     height: 16px;
-
+  }
 
   &__iconHeart{
-      display: none;
-  }
-
- &__textContainer{
-   display: flex;
-   gap: 32px
- }
-
-  &__headerText{
-    font-weight: 800;
-    font-size: 12px;
-    line-height: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: #75767F;
-  }
-
-
-    //@include on-desktop {
-    //  grid-column: 1/6;
-    //}
+    display: none;
+    @include on-tablet {
+      display: inline;
+    }
   }
 
   &__picture{
@@ -65,5 +48,34 @@
     border-left: 1px solid #3B3E4A;
 
     }
+
+  &__headerText{
+    display: none;
+    @include on-tablet {
+      display: inline;
+      font-weight: 800;
+      font-size: 12px;
+      line-height: 11px;
+      letter-spacing: 0.04em;;
+      text-transform: uppercase;
+      color: #75767F;
+    }
+  }
+
+  &__textContainer{
+    display: none;
+    @include on-tablet {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 32px
+    }
+
+  }
+  &__contentContainer{
+    display: flex;
+    gap: 16px;
+  }
+
   }
 

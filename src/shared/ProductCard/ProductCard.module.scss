@@ -15,14 +15,14 @@
     width: 100%;
     height: 200px;
     padding-top: 32px;
-    padding-bottom: 24px;
+    margin-bottom: 24px;
   }
   &__title{
+    max-height: 42px;
     color: #F1F2F9;
     font-weight: 600;
     font-size: 14px;
     line-height: 21px;
-    padding-bottom: 8px;
   }
 
   &__price{
@@ -50,7 +50,7 @@
     width: 100%;
     height: 2px;
     background-color: #3B3E4A;
-    margin: 8px 0;
+    margin-bottom: 8px;
   }
 
   &__infoContainer{
@@ -75,8 +75,8 @@
   &__ButtonsContainer{
     display: flex;
     justify-content: space-between;
-    padding-top: 8px;
-    padding-bottom: 32px;
+    margin-top: 8px;
+    margin-bottom: 32px;
   }
 
   &__button{
