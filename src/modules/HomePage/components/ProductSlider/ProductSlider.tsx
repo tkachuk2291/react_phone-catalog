@@ -21,43 +21,44 @@ export const ProductSlider: React.FC<CustomProductSliderInterface> = ({ sliderNa
   const swiperRef = useRef<SwiperClass | null>(null);
 
   return (
-    <>
-      <div className={styles.ProductSlider__navigationContainer}>
-        <p className={styles.ProductSlider__navigationText}> {sliderName}</p>
-        <div className={styles.ProductSlider__buttonContainer}>
-          <button
-            onClick={() => swiperRef.current?.slidePrev()}
-            type="button"
-            className={styles.ProductSlider__arrowButton}
-          >
-            <p className={styles.ProductSlider__arrowText}>&lt;</p>
-          </button>
-          <button
-            onClick={() => swiperRef.current?.slideNext()}
-            type="button"
-            className={styles.ProductSlider__arrowButton}
-          >
-            <p className={styles.ProductSlider__arrowText}>&gt;</p>
-          </button>
+      <div className={styles.ProductSlider__sliderContainer}>
+        <div className={styles.ProductSlider__navigationContainer}>
+          <p className={styles.ProductSlider__navigationText}> {sliderName}</p>
+          <div className={styles.ProductSlider__buttonContainer}>
+            <button
+              onClick={() => swiperRef.current?.slidePrev()}
+              type="button"
+              className={styles.ProductSlider__arrowButton}
+            >
+              <p className={styles.ProductSlider__arrowText}>&lt;</p>
+            </button>
+            <button
+              onClick={() => swiperRef.current?.slideNext()}
+              type="button"
+              className={styles.ProductSlider__arrowButton}
+            >
+              <p className={styles.ProductSlider__arrowText}>&gt;</p>
+            </button>
+          </div>
         </div>
-      </div>
-      <Swiper
-        className="customSwiperMain"
-        modules={[Pagination, A11y]}
-        spaceBetween={16}
-        slidesPerView={'auto'}
-        speed={1000}
-        onSwiper={(swiper) => {
-          swiperRef.current = swiper;
-        }}
-      >
-      {productsCardList.slice(0,5).map((productCardItem) => (
-        <SwiperSlide className={styles.ProductSlider__productSlide}>
-          <ProductCard productCardItem={productCardItem} fullPrice={showFullPrice ? productCardItem.fullPrice : undefined} />
-        </SwiperSlide>
-      ))}
+        <Swiper
+          className="customSwiperMain"
+          modules={[Pagination, A11y]}
+          spaceBetween={16}
+          slidesPerView={'auto'}
+          speed={1000}
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+          }}
+        >
+        {productsCardList.slice(0,5).map((productCardItem) => (
+          <SwiperSlide className={styles.ProductSlider__productSlide}>
+            <ProductCard productCardItem={productCardItem} fullPrice={showFullPrice ? productCardItem.fullPrice : undefined} />
+          </SwiperSlide>
+        ))}
 
-      </Swiper>
-    </>
+        </Swiper>
+      </div>
+
   );
 };

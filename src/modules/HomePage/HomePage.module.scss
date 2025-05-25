@@ -1,32 +1,80 @@
 @use '../../shared/utils/mixins' as *;
 
 .homePage{
+  display: flex;
+  flex-direction: column;
+  gap:56px;
+  @include on-tablet {
+    gap:64px;
+  }
+
+
+  &__sectionMain{
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    @include on-tablet {
+      gap:32px;
+    }
+
+    @include on-desktop{
+      gap:56px;
+      margin: 0 auto;
+    }
+  }
+
+
   &__mainText{
     line-height: 41px;
     letter-spacing: -0.0.1em ;
     font-weight: 800;
     font-size: 32px;
     color:#F1F2F9;
-    padding: 16px 24px;
     margin: 0 auto;
-    max-width: 230px;
+    max-width: 300px;
 
     @include on-tablet {
       font-weight: 800;
       font-size: 48px;
       line-height: 56px;
-      padding: 32px 24px;
       max-width: 592px
     }
+    @include on-desktop{
+      max-width: 1136px;
+      margin: 0 ;
+    }
+
+  }
+  &__productSlider{
+    margin:  0  16px;
   }
   &__main{
     padding:  0 16px ;
   }
 
   &__category{
-      padding:  56px 16px ;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    @include on-tablet {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+    }
+  }
+
+  &__categoryContainer{
       max-width: 288px;
+      display: flex;
+      flex-direction: column;
+      gap:24px;
       margin: 0 auto;
+      @include on-tablet {
+        max-width: 592px;
+      }
+      @include on-desktop {
+        max-width: 1136px;
+      }
   }
 
   &__categoryText{
@@ -35,6 +83,7 @@
     line-height: 41px;
     color: #F1F2F9;
   }
+
 
 }
 .picture{

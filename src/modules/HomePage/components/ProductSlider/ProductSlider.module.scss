@@ -4,11 +4,16 @@
     max-width: 212px;
   }
 
+  &__sliderContainer{
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+  }
+
   &__navigationContainer {
-    padding: 0 16px;
+
     display: flex;
     justify-content: space-between;
-    margin-bottom: 24px;
   }
 
   &__navigationText {

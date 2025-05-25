@@ -1,4 +1,9 @@
+@use '../../../../shared/utils/mixins' as *;
+
 .CategoryCard{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
     &__text{
       font-weight: 700;
       font-size: 20px;
@@ -8,7 +13,7 @@
     }
 
     &__img{
-      margin: 24px 0;
+      //margin: 24px 0;
     }
 
     &__models{
@@ -17,4 +22,5 @@
       line-height: 21px;
       color: #75767F;
     }
+
 }

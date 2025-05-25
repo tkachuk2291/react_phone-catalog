@@ -23,6 +23,11 @@
     .customSwiperWrapperMain{
       height: 189px;
     }
+    @include on-desktop {
+      .customSwiperWrapperMain {
+        height: 400px;
+      }
+    }
   }
 
 

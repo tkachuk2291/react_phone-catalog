@@ -1,17 +1,32 @@
+@use '../../shared/utils/mixins' as *;
+
 .Footer {
-  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  padding:  32px 16px;
+  gap: 32px;
   border-top: #3B3E4A 1px solid;
-  padding: 32px 16px;
+  @include on-tablet {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 32px;
+  }
 
   &__img {
-    margin: 0 0 32px 0;
+      max-width: 89px;
+      max-height: 32px;
   }
 
   &__textContainer {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin-bottom: 32px;
+    @include on-tablet {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   &__link {

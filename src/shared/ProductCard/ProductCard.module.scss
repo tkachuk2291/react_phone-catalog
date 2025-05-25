@@ -1,20 +1,17 @@
 .ProductCard {
   background: #161827;
-  max-width: 212px;
+  min-width: 212px;
   width: 100%;
-  margin-left: 16px;
   height: auto;
+  display: flex;
+  flex-direction: column;
+  padding:  32px;
 
 
-  &__content{
-    display: flex;
-    flex-direction: column;
-    padding: 0 32px;
-  }
+
   &__picture{
     width: 100%;
-    height: 200px;
-    padding-top: 32px;
+    height: 130px;
     margin-bottom: 24px;
   }
   &__title{
@@ -94,6 +91,13 @@
     text-align: end;
     padding: 12px;
     background: #323542;
+  }
+
+  &__productCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
 }

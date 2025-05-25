@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, A11y, Navigation } from 'swiper/modules';
+import { Pagination, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/a11y';
@@ -15,10 +15,17 @@ export const MainSlider: React.FC = () => {
       <div className={styles.MainSlider__sliderContainer}>
         <button
           type="button"
+          className={styles.MainSlider__arrowButton}
           onClick={() => swiperRef.current?.slidePrev()}
-          className={styles.MainSlider__arrowButton}>&lt;</button>
+        >
+          <img alt="arrowLeftMain"
+            src="./img/Slider/Navigation/ArrowLeftMain.svg"
+            className={styles.MainSlider__imgArrow}
+          />
+        </button>
+
         <Swiper
-          onSwiper={(swiper) => (swiperRef.current = swiper)}
+          onSwiper={swiper => (swiperRef.current = swiper)}
           className="customSwiperMain"
           wrapperClass={'customSwiperWrapperMain'}
           modules={[Pagination, A11y]}
@@ -28,12 +35,6 @@ export const MainSlider: React.FC = () => {
           pagination={{ clickable: true }}
         >
           <SwiperSlide className={styles.MainSlider}>
-            <button
-              onClick={() => swiperRef.current?.slidePrev()}
-              type="button"
-            >
-              &lt;
-            </button>
             <picture className={styles.MainSlider__picture}>
               <source
                 media="(min-width: 1200px)"
@@ -44,33 +45,37 @@ export const MainSlider: React.FC = () => {
                 srcSet="img/Slider/MainSliderTablet.svg"
               />
               <img
-                className={styles.picture}
+                className={styles.MainSlider__picture}
                 alt="Mob"
                 src="./img/Slider/photoSliderMobile.png"
               />
             </picture>
           </SwiperSlide>
           <SwiperSlide className={styles.MainSlider}>
-            <button
-              onClick={() => swiperRef.current?.slidePrev()}
-              type="button"
-            >
-              &lt;
-            </button>
             <img
-              className={styles.picture}
+              className={styles.MainSlider__picture}
               alt="Mob"
               src="./img/Slider/iphonePurpleSliderMobile.png"
             />
           </SwiperSlide>
           <SwiperSlide className={styles.MainSlider}>
             <img
-              className={styles.picture}
+              className={styles.MainSlider__picture}
               alt="Mob"
               src="./img/Slider/iphone15MobileSlide.png"
             />
           </SwiperSlide>
         </Swiper>
+        <button
+          type="button"
+          className={styles.MainSlider__arrowButton}
+          onClick={() => swiperRef.current?.slideNext()}
+        >
+          <img alt="arrowRightMain"
+            src="./img/Slider/Navigation/ArrowRightMain.svg"
+            className={styles.MainSlider__imgArrow}
+          />
+        </button>
       </div>
     </>
   );

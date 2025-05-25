@@ -18,15 +18,31 @@ export const CategoryCard: React.FC<CategoryCard> = ({devices , img   ,  phones 
 
   return (
     <div className={styles.CategoryCard}>
-        <img src={img} alt={devices} className={styles.CategoryCard__img} />
-        <p className={styles.CategoryCard__text}>{devices}</p>
+      <img src={img} alt={devices} className={styles.CategoryCard__img} />
 
-      {phones && <p className={styles.CategoryCard__models}>{phones.length} phones</p>}
-      {tablets && <p className={styles.CategoryCard__models}>{tablets.length} tablets</p>}
-      {accessories && <p className={styles.CategoryCard__models}>{accessories.length} accessories</p>}
-        {/*<p className={styles.CategoryCard__models}>95 models</p>*/}
+      {phones && (
+        <div className={styles.CategoryCard__textContainer}>
+          <p className={styles.CategoryCard__text}>{devices}</p>
+          <p className={styles.CategoryCard__models}>{phones.length} models</p>{' '}
+        </div>
+      )}
+      {tablets && (
+        <div className={styles.CategoryCard__textContainer}>
+          <p className={styles.CategoryCard__text}>{devices}</p>
+          <p className={styles.CategoryCard__models}>
+            {tablets.length} models
+          </p>{' '}
+        </div>
+      )}
+      {accessories && (
+        <div className={styles.CategoryCard__textContainer}>
+          <p className={styles.CategoryCard__text}>{devices}</p>
+          <p className={styles.CategoryCard__models}>
+            {accessories.length} models
+          </p>
+        </div>
+      )}
     </div>
-
   );
 }
 
