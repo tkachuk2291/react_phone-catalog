@@ -1,16 +1,21 @@
 .ProductCard {
   background: #161827;
-  min-width: 212px;
+  min-width: 288px;
   width: 100%;
   height: auto;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  //flex-direction: column;
+
+  //flex-direction: column;
   padding:  32px;
 
 
 
   &__picture{
+    object-fit: contain;
     width: 100%;
+    max-width: 223px;
     height: 130px;
     margin-bottom: 24px;
   }
@@ -99,5 +104,11 @@
     align-items: center;
     justify-content: center;
   }
+
+  &__content{
+    display: grid;
+    grid-column:  1/5;
+  }
+
 
 }
