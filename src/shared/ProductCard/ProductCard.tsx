@@ -58,5 +58,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({productCardItem , fullP
         </div>
       </div>
     </div>
+
+
+
   );
 };
+
+
+

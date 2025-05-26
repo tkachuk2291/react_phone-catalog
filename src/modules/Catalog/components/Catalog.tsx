@@ -1,14 +1,14 @@
 import styles from './Catalog.module.scss';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { useDataContext } from '../../../shared/utils/data';
-import  { useState } from 'react';
-import { Dropdown } from 'react-bootstrap';
+import Select from 'react-select';
+import { useEffect, useState } from 'react';
 import { ProductCard } from '../../../shared/ProductCard/ProductCard';
 import ReactPaginate from 'react-paginate';
 
+
 export const Catalog = () => {
   const { category } = useParams<{ category: keyof typeof categorizedProducts }>();
-  console.log(category , 'Тест')
 
   const { categorizedProducts } = useDataContext()
     if (!category) {
@@ -16,30 +16,95 @@ export const Catalog = () => {
     }
     const deviceList = categorizedProducts[category];
     const location = useLocation()
-    const [sorting, setSorting] = useState('Sorting By');
-    const [pageSize, setPageSize] = useState(1000);
+
+  type OptionType = {
+    value: string;
+    label: string;
+  };
 
 
+  const [selectedSortingOption, setSelectedSortingOption] = useState<OptionType | null>(null);
+  const [selectedPaginationOption, setSelectedPaginationOption] = useState<OptionType | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const sort = searchParams.get('sort')
 
 
-  const newList = deviceList.sort((a  ,  b) => {
-      if (sorting ===  'Newest') {
-          return b.year - a.year
-      }
-      if (sorting ===  'Price') {
-        return b.fullPrice - a.fullPrice
-      }
-      if (sorting === "name") {
-        return a.name.localeCompare(b.name)
-      }
-      return 0
-  });
+  const optionsSorting = [
+    { value: 'none', label: 'Sort By' },
+    { value: 'newest', label: 'Newest' },
+    { value: 'name', label: 'Name' },
+    { value: 'price', label: 'Price' },
+  ];
 
+  const optionsPagination = [
+    { value: 'none', label: 'Split By'},
+    { value: '5', label: '5' },
+    { value: '10', label: '10' },
+    { value: '15', label: '15' },
+    { value: '20', label: '20' },
+  ];
+
+
+  const newList = (() => {
+    const copiedList = [...deviceList];
+
+    if (!sort || sort === 'none') {
+      return copiedList;
+    }
+
+    if (sort === 'name') {
+      return copiedList.sort((a, b) => b.year - a.year);
+    }
+
+    if (sort === 'price') {
+      return copiedList.sort((a, b) => b.fullPrice - a.fullPrice);
+    }
+
+    if (sort === 'newest') {
+      return copiedList.sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    return copiedList;
+  })();
+
+  const [pageSize, setPageSize] = useState(5);
 
   const [currentPage, setCurrentPage] = useState(0);
-  const offset = (currentPage - 1) * pageSize;
-  const currentItems = newList;
   const pageCount = Math.ceil(deviceList.length / pageSize);
+  const offset = currentPage * pageSize;
+  const currentItems = newList.slice(offset, offset + pageSize);
+
+
+
+
+  useEffect(() => {
+    const sortParam = searchParams.get('sort');
+    const paginationParam = searchParams.get('pagination');
+
+    const foundSortingOption = optionsSorting.find(opt => opt.value === sortParam);
+    const foundPaginationOption = optionsPagination.find(opt => opt.value === paginationParam);
+
+    if (foundSortingOption) {
+      setSelectedSortingOption(foundSortingOption);
+    } else {
+      setSelectedSortingOption(optionsSorting[0]);
+    }
+
+    if (foundPaginationOption) {
+      setSelectedPaginationOption(foundPaginationOption);
+      const parsed = parseInt(foundPaginationOption.value, 10);
+      if (!isNaN(parsed)) {
+        setPageSize(parsed);
+      }
+    } else {
+      setSelectedPaginationOption(optionsPagination[0]);
+      setPageSize(5);
+    }
+    setCurrentPage(0);
+  }, [searchParams]);
+
+
+  console.log(searchParams.get('sort') , 'ЧТО ПРИШЛО СЮДА?')
 
   return (
     <div className={styles.catalog}>
@@ -73,54 +138,76 @@ export const Catalog = () => {
       <div className={styles.catalog__filteringContainer}>
         <div className={styles.catalog__sortContainer}>
           <p className={styles.catalog__sortText}>Sort by</p>
-          <Dropdown>
-            <Dropdown.Toggle
-              className={styles.catalog__CustomBtn}
-              variant="secondary"
-              id="dropdown-basic"
-            >
-              <div className={styles.catalog__buttonTextContainer}>
-                <p>{sorting}</p>
-                <img
-                  className={styles.catalog__img}
-                  alt="dropDown"
-                  src="./img/Catalog/ArrowDown.svg"
-                />
-              </div>
-            </Dropdown.Toggle>
+          <Select
+            value={selectedSortingOption}
+            options={optionsSorting}
+            onChange={(option) => {
+              const newParams = new URLSearchParams(searchParams);
 
-            <Dropdown.Menu>
-              <Dropdown.Item href="#" onClick={() => setSorting('Newest')}>Newest</Dropdown.Item>
-              <Dropdown.Item href="#" onClick={() => setSorting('Price')}>Price</Dropdown.Item>
-              <Dropdown.Item href="#" onClick={() => setSorting('name')}>Name</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+              if (option?.value === 'none') {
+                newParams.delete('sort');
+              } else {
+                newParams.set('sort', option.value);
+              }
+              setSearchParams(newParams); // <-- достаточно только этого
+            }}
+            placeholder="Sort By"
+            styles={{
+              control: (base) => ({
+                ...base,
+                border: 'none',
+                background:'#323542',
+                color: '#F1F2F9',
+                borderRadius: 0,
+              }),
+              singleValue: (base) => ({
+                ...base,
+                color: '#F1F2F9',
+              }),
+              indicatorSeparator: () => ({
+                display: 'none',
+              }),
+            }}
+          />
+
+
         </div>
         <div className={styles.catalog__paginationContainer}>
           <p className={styles.catalog__paginationText}>Items on page</p>
-          <Dropdown>
-            <Dropdown.Toggle
-              className={styles.catalog__CustomBtn}
-              variant="secondary"
-              id="dropdown-basic"
-            >
-              <div className={styles.catalog__buttonTextContainer}>
-                <p>{pageSize}</p>
-                <img
-                  className={styles.catalog__img}
-                  alt="dropDown"
-                  src="./img/Catalog/ArrowDown.svg"
-                />
-              </div>
-            </Dropdown.Toggle>
+          <Select
+            value={selectedPaginationOption}
+            onChange={(option) => {
+              const newParams = new URLSearchParams(searchParams);
 
-              <Dropdown.Menu>
-                <Dropdown.Item onClick={() => setPageSize(5)}>5</Dropdown.Item>
-                <Dropdown.Item onClick={() => setPageSize(10)}>10</Dropdown.Item>
-                <Dropdown.Item onClick={() => setPageSize(15)}>15</Dropdown.Item>
-              </Dropdown.Menu>
+              if (option?.value === 'none') {
+                newParams.delete('pagination');
+              } else {
+                newParams.set('pagination', option.value);
+              }
 
-          </Dropdown>
+              setSearchParams(newParams);
+            }}
+            // classNamePrefix="custom"
+            options={optionsPagination}
+            placeholder="Split By"
+            styles={{
+              control: (base) => ({
+                ...base,
+                border: 'none',
+                background:'#323542',
+                color: '#white',
+                borderRadius: 0,
+              }),
+              singleValue: (base) => ({
+                ...base,
+                color: '#F1F2F9',
+              }),
+              indicatorSeparator: () => ({
+                display: 'none',
+              }),
+            }}
+          />
+
         </div>
       </div>
       <div className={styles.catalog__productCard}>
@@ -132,16 +219,16 @@ export const Catalog = () => {
           />
         ))}
       </div>
-      {/*<ReactPaginate*/}
-      {/*  breakLabel="..."*/}
-      {/*  nextLabel="→"*/}
-      {/*  previousLabel="←"*/}
-      {/*  onPageChange={(e) => setCurrentPage(e.selected)} // смена страницы*/}
-      {/*  pageRangeDisplayed={pageSize}*/}
-      {/*  pageCount={pageCount}*/}
-      {/*  containerClassName="pagination"*/}
-      {/*  activeClassName="active"*/}
-      {/*/>*/}
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel="→"
+        previousLabel="←"
+        onPageChange={(e) => setCurrentPage(e.selected)}
+        pageRangeDisplayed={pageSize}
+        pageCount={pageCount}
+        containerClassName="pagination"
+        activeClassName="active"
+      />
     </div>
   );
 }
