@@ -51,7 +51,7 @@ export const ProductSlider: React.FC<CustomProductSliderInterface> = ({ sliderNa
             swiperRef.current = swiper;
           }}
         >
-        {productsCardList.slice(0,5).map((productCardItem) => (
+        {productsCardList.slice(0,20).map((productCardItem) => (
           <SwiperSlide className={styles.ProductSlider__productSlide}>
             <ProductCard productCardItem={productCardItem} fullPrice={showFullPrice ? productCardItem.fullPrice : undefined} />
           </SwiperSlide>

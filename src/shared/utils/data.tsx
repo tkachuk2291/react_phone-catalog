@@ -4,6 +4,8 @@ import { Phone } from '../types/Phone';
 import { Accessorie } from '../types/Accessorie';
 import { Tablet } from '../types/Tablet';
 import { getData } from './fethData';
+import { useMediaQuery } from 'react-responsive';
+
 
 
 interface DataContextType {
@@ -24,9 +26,7 @@ export const DataContext = createContext<DataContextType | null>(null);
   };
 export const DataProvider = ({ children }: { children: ReactNode }) => {
   const [productsCardList, setProductsCardList] = useState<ProductItem[]>([]);
-  // const [phones, setPhones] = useState<Phone[]>([]);
-  // const [accessories , setAccessories]  = useState<Accessorie[]>([]);
-  // const [tablets , setTablets]  = useState<Tablet[]>([]);
+
 
   useEffect(() => {
     Promise.all([
@@ -35,12 +35,8 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
       getData<Accessorie[]>('accessories.json'),
       getData<Tablet[]>('tablets.json'),
     ])
-      // .then(([products, phonesData, accessoriesData ,  tabletsData]
       .then(([products]) => {
         setProductsCardList(products);
-        // setPhones(phonesData);
-        // setAccessories(accessoriesData);
-        // setTablets(tabletsData);
       })
       .catch(console.error);
   }, []);
@@ -50,14 +46,18 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
     return product.category === 'phones' || product.category === 'tablets' || product.category === 'accessories';
   });
 
+
+
   const categorizedProducts = {
     phones: filteredProducts.filter((product) => product.category === 'phones'),
     tablets: filteredProducts.filter((product) => product.category === 'tablets'),
     accessories: filteredProducts.filter((product) => product.category === 'accessories'),
   };
 
+
+
     return (
-      <DataContext.Provider value={{ categorizedProducts }} >
+      <DataContext.Provider value={{ categorizedProducts  } } >
           {children}
       </DataContext.Provider>
   )

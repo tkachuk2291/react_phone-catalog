@@ -9,6 +9,7 @@ import { Accessorie } from '../types/Accessorie';
 import { Tablet } from '../types/Tablet';
 import { getData } from './fethData';
 import { DataProvider } from './data';
+import { CardDetails } from '../../modules/CardDetails/CardDetails';
 
 
 export const Root = () => {
@@ -41,11 +42,8 @@ export const Root = () => {
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<HomePage productsCardList={productsCardList} phones={phones} tablets={tablets} accessories={accessories} />} />
-            <Route path=":category" element={<Catalog />} />
-            {/*<Route path="people">*/}
-            {/*  <Route index element={<PeoplePage />} />*/}
-            {/*  <Route path=":slug" element={<PeoplePage />} />*/}
-            {/*</Route>*/}
+            <Route path="/:category" element={<Catalog />} />
+            <Route path="/:category/:id" element={<CardDetails />} />
             <Route path="*" element={<h1 className="title">Page not found</h1>} />
           </Route>
         </Routes>

@@ -1,0 +1,32 @@
+.cardDetails{
+    padding: 0 16px;
+  &__locationContainer{
+      display: flex;
+      background: none;
+      border: none;
+      align-items: center;
+      gap: 4px;
+      padding:0
+
+  }
+  &__locationText{
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1px;
+    color: #F1F2F9;
+  }
+
+  &__mainSlider{
+    margin-top: 16px;
+  }
+
+  &__mainText{
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.2;
+    color:#F1F2F9;
+    max-width: 288px;
+
+  }
+
+}

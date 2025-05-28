@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client';
 import 'reset-css';
 import './styles/index.scss';
 import './styles/SwiperOverrides.scss';
+import './styles/PagaintionOverrides.scss';
+
 import { Root } from './shared/utils/Root';
 
 

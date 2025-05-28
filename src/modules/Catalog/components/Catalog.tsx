@@ -1,5 +1,5 @@
 import styles from './Catalog.module.scss';
-import { useLocation, useParams, useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { useDataContext } from '../../../shared/utils/data';
 import Select from 'react-select';
 import { useEffect, useState } from 'react';
@@ -15,7 +15,7 @@ export const Catalog = () => {
       return <div>Category not found</div>;
     }
     const deviceList = categorizedProducts[category];
-    const location = useLocation()
+
 
   type OptionType = {
     value: string;
@@ -108,21 +108,22 @@ export const Catalog = () => {
 
   return (
     <div className={styles.catalog}>
-      <div className={styles.catalog__locataionContaier}>
-        <img
-          className={styles.catalog__img}
-          alt="home"
-          src="./img/Catalog/Home.svg"
-        />
-        <img
-          className={styles.catalog__img}
-          alt="arrow"
-          src="./img/Catalog/arrowRight.svg"
-        />
-        <p className={styles.catalog__textLocation}>
-          {location.pathname.replace(/^\/|\/$/g, '')}
-        </p>
-      </div>
+
+      {/*<div className={styles.catalog__locataionContaier}>*/}
+      {/*  <img*/}
+      {/*    className={styles.catalog__img}*/}
+      {/*    alt="home"*/}
+      {/*    src="./img/Catalog/Home.svg"*/}
+      {/*  />*/}
+      {/*  <img*/}
+      {/*    className={styles.catalog__img}*/}
+      {/*    alt="arrow"*/}
+      {/*    src="./img/Catalog/arrowRight.svg"*/}
+      {/*  />*/}
+      {/*  <p className={styles.catalog__textLocation}>*/}
+      {/*    {location.pathname.replace(/^\/|\/$/g, '')}*/}
+      {/*  </p>*/}
+      {/*</div>*/}
       <div className={styles.catalog__mainTextConatainer}>
         {category === 'phones' ? (
           <p className={styles.catalog__mainText}>Mobile {category} </p>
@@ -149,7 +150,7 @@ export const Catalog = () => {
               } else {
                 newParams.set('sort', option.value);
               }
-              setSearchParams(newParams); // <-- достаточно только этого
+              setSearchParams(newParams);
             }}
             placeholder="Sort By"
             styles={{
@@ -220,13 +221,16 @@ export const Catalog = () => {
         ))}
       </div>
       <ReactPaginate
-        breakLabel="..."
-        nextLabel="→"
-        previousLabel="←"
+        // breakLabel="..."
+        breakLabel={null}
+        previousLabel={<img src="./img/pagination/ArrowLeft.svg"  alt="←"  />}
+        nextLabel={<img src="./img/pagination/ArrowRight.svg" alt="→"  />}
         onPageChange={(e) => setCurrentPage(e.selected)}
-        pageRangeDisplayed={pageSize}
+        pageRangeDisplayed={3}
+        marginPagesDisplayed={0}
         pageCount={pageCount}
-        containerClassName="pagination"
+        forcePage={currentPage}
+        containerClassName="customPagination"
         activeClassName="active"
       />
     </div>

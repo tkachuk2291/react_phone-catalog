@@ -1,0 +1,46 @@
+@use '../shared/utils/mixins' as *;
+
+.customPagination {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    margin-top: 24px;
+    //max-width: 248px;
+}
+
+.customPagination li {
+  padding: 8px 12px;
+  cursor: pointer;
+  background-color: #161827;
+  color: white;
+}
+
+.customPagination li.active  {
+  background-color: #905BFF;
+  color: white;
+}
+
+
+.customPagination li a  {
+  height: 100%;
+}
+
+.customPagination li.previous,
+.customPagination li.next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #323542;
+  height: 32px;
+  width: 32px;
+}
+
+
+.customPagination li.previous{
+    margin-right: 8px;
+}
+
+.customPagination li.next {
+  margin-left: 8px;
+}

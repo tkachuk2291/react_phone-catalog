@@ -1,0 +1,33 @@
+@use '../../shared/utils/mixins' as *;
+
+.locationPatch {
+
+  &__locataionContaier {
+    display: flex;
+    align-items: end;
+    gap: 8px;
+    max-width: 288px;
+    padding-left: 16px;
+    padding-top: 24px;
+
+    @include on-tablet{
+      padding-left: 24px;
+    }
+    @include  on-desktop{
+      margin: 0 auto;
+      max-width: 1136px;
+      padding-left: 24px;
+    }
+
+
+  }
+  &__textLocation{
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1;
+    color:#75767F;
+  }
+
+
+
+}

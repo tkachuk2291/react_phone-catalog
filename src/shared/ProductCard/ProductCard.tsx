@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './ProductCard.module.scss';
 import { ProductItem } from '../types/ProductItem';
+import { Link } from 'react-router-dom';
 
 
 interface ProductCardProps{
@@ -10,6 +11,7 @@ interface ProductCardProps{
 
 export const ProductCard: React.FC<ProductCardProps> = ({productCardItem , fullPrice}) => {
 
+
   return (
     <div className={styles.ProductCard}>
       <div className={styles.ProductCard__content}>
@@ -18,7 +20,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({productCardItem , fullP
           alt="Mob"
           src={productCardItem.image}
         />
-        <p className={styles.ProductCard__title}>{productCardItem.name}</p>
+        <p className={styles.ProductCard__title}><Link to={`/${productCardItem.category}/${productCardItem.id}`}>{productCardItem.name}</Link></p>
 
           <div className={styles.ProductCard__priceContainer}>
             <p className={styles.ProductCard__price}>${productCardItem.price}</p>

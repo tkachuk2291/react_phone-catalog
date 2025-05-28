@@ -1,24 +1,16 @@
-//.customSelect{
-//
-//}
+@use '../../../shared/utils/mixins' as *;
 
 
 .catalog{
-  margin: 0 16px;
-  &__locataionContaier{
-    display: flex;
-    align-items: end;
-    gap:8px;
-    //max-width: 93px;
-    margin-bottom:  24px;
+  margin: 0 auto;
+  padding:  0 16px;
+  @include on-tablet{
+    padding:  0 24px;
+  }
+  @include on-desktop{
+    max-width: 1136px;
   }
 
-  &__textLocation{
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 1;
-    color:#75767F;
-  }
   &__mainTextConatainer{
     display: flex;
     flex-direction: column;
@@ -87,7 +79,7 @@
   }
 
   &__CustomSelect {
-    background-color: red; /* Пример изменения фона */
+    background-color: red;
   }
 
   &__paginationText{
@@ -97,14 +89,7 @@
     line-height: 1;
   }
 
-
-
-
   &__CustomBtn{
-    //display: flex;
-    //flex-direction: row;
-    //justify-content: space-between;
-    //align-items: center;
     background:#323542 ;
     color: #F1F2F9;
     width: 100%;
@@ -114,14 +99,27 @@
 
   }
 
-
   &__productCard{
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+    display: grid;
+    gap: 40px;
     align-items: center;
+    justify-content:center;
+
+    @include on-tablet{
+      column-gap: 16px;
+      row-gap: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(229px , 1fr));
+
+    }
   }
 
 
 }
 
+.pagination {
+  display: flex;
+  list-style: none;
+  gap: 8px;
+  padding: 16px;
+  justify-content: center;
+}
